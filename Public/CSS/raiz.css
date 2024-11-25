@@ -1,0 +1,111 @@
+:root{
+    --Nav : #0047ab;
+    --fuenteTitulo : ""Faculty Glyphic", sans-serif";
+    --Seccion : #B3C8CF;
+    --SubSeccion : aliceblue;
+}
+.raiz-container{
+    display: flex;
+    width: 90vw;
+    height: 400px;
+    background-color: #B3C8CF;
+    padding: 10px;
+    display: flex;
+    gap: 42px;
+    margin-bottom: 50px;
+}
+    .raiz{
+        flex: .7;
+        display: flex;
+        flex-direction: column;
+    }
+        .Raiz-Head{
+            flex: .5;
+            background-color: var(--SubSeccion);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            min-width: 390px;
+            
+        }
+            #Raiz-Head-H2{
+                font-size: 25px;
+                text-align: center;
+            }
+        .Raiz-Body{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            background-color: var(--SubSeccion);
+            align-items: center;
+        }
+            .raizInputs-container{
+                display: flex;
+                flex: 1;
+                width: 100%;
+                align-items: center;
+            }
+                .InitA-container{
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                }
+                .InitB-container{
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                }
+                .inputsRaiz{
+                    width: 80px;
+                    height: 20px;
+                    margin-left: 10px;
+                    font-size: 20px;
+                }
+        
+        .raizResultante{
+            width: 95%;
+            flex: .5;
+            background-color: #fff;
+            border: 1px solid #000;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .raizResultante > output{
+            color: grey;
+        }
+            
+        .raizButton{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            flex: 1;
+            background-color: var(--SubSeccion);
+        }
+            .BtnCalcRaiz,.BtnCancRaiz{
+                padding: 10px 40px;
+                background-color: #89A8B2;
+            }
+    .aprox{
+        flex: 2;
+        background-color: #89A8B2;
+        display: flex;
+        flex-direction: column;
+    }
+        .DGrid{
+            background-color: var(--SubSeccion);
+            flex: 1;
+        }
+        .DGrid-Head{
+            background-color: darkgoldenrod;
+            flex-basis: 20px;
+        }
+        #Dgrid-Head-H2{
+            margin: 3px;
+            position: relative;
+            left: 40px;
+        }
+    

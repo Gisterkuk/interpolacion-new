@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/Public/CSS/normalize.css">
+    <link rel="stylesheet" href="/Public/CSS/ConfEstilos.css">
+    <link rel="stylesheet" href="/Public/CSS/Head.css">
+    <link rel="stylesheet" href="/Public/CSS/Iteracion.css">
+    <link rel="stylesheet" href="/Public/CSS/formula.css">
+    <link rel="stylesheet" href="/Public/CSS/raiz.css">
+    <link rel="stylesheet" href="/Public/CSS/footer.css">
+
+
+
+    <title>Interpolación</title>
+</head>
+<body>
+    <div class="padre-container">
+        <div class="head-container">
+            <h1>Calculadora de Interpolación</h1>
+        </div>
+       
+        <main>
+            <section class="ite-container" aria-label="Sección de Iteración">
+                <div class="tabla-container">
+                    
+                        <div class="dimensiones">
+                            <label style="font-size: 20px;">Dimensiones:
+                                <input type="number" value="1" min="1" max="10" id="dimensione" style="width: 80px; text-align: center;">
+                            </label>
+                        </div>
+                        <span class="error-message" id="iteracion-error">Completa las celdas correctamente</span>
+                    
+                    <table>   <!--   TABLA DE X/Y         -->
+                        <thead>
+                            <tr>
+                                <th>X</th>
+                                <th class="empty-col"></th>
+                                <th>Y</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr>
+                                    <td><input class="celdasInput X" id="CeldaX" type="number" placeholder="X1"></td>
+                                    <td class="empty-col"></td>
+                                    <td><input class="celdasInput Y" type="number" placeholder="Y1"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="celdasInput X"  type="number" placeholder="X2"></td>
+                                    <td class="empty-col"></td>
+                                    <td><input class="celdasInput Y" type="number" placeholder="Y2"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="celdasInput X" type="number" placeholder="X3"></td>
+                                    <td class="empty-col"></td>
+                                    <td><input class="celdasInput Y" type="number" placeholder="Y3"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="celdasInput X" type="number" placeholder="X4"></td>
+                                    <td class="empty-col"></td>
+                                    <td><input class="celdasInput Y" type="number" placeholder="Y4"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="celdasInput X" type="number" placeholder="X5"></td>
+                                    <td class="empty-col"></td>
+                                    <td><input class="celdasInput Y" type="number" placeholder="Y5"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="celdasInput X" type="number" placeholder="X6"></td>
+                                    <td class="empty-col"></td>
+                                    <td><input class="celdasInput Y" type="number" placeholder="Y6"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="celdasInput X" type="number" placeholder="X7"></td>
+                                    <td class="empty-col"></td>
+                                    <td><input class="celdasInput Y" type="number" placeholder="Y7"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="celdasInput X" type="number" placeholder="X8"></td>
+                                    <td class="empty-col"></td>
+                                    <td><input class="celdasInput Y" type="number" placeholder="Y8"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="celdasInput X" type="number" placeholder="X9"></td>
+                                    <td class="empty-col"></td>
+                                    <td><input class="celdasInput Y" type="number" placeholder="Y9"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="celdasInput X" type="number" placeholder="X10"></td>
+                                    <td class="empty-col"></td>
+                                    <td><input class="celdasInput Y" type="number" placeholder="Y10"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    <div class="button-container">
+                        <button type="submit" class="calcular" id="CalcularDeIteracion">CALCULAR</button>
+                        <button type="reset" class="cancelar" id="CancelarDeIteracion">CANCELAR</button>
+                    </div>
+                </div>
+                <div class="grafico-container">
+                    <!-- Aquí se mostrará el gráfico -->
+                </div>
+            </section>
+        </main>
+        <section class="form-container" aria-label="Sección de Fórmulas">
+            <div class="newton-container">
+                <output class="newtonRespuesta">Formula Newtoniana</output>
+            </div>
+            <div class="polinomio-container">
+                <div id="funcX">
+                    <div class="FdeX">
+                        <label for="inputDeX" style="min-width: 240px;">CALCULAR LA IMAGEN DE X =</label>
+                        <div class="inputDeX-container"> 
+                            <input  type="number" id="inputDeX">
+                        </div>
+                        <div class="buttonDeX-container">
+                            <button type="submit" class="calcularDeX calcular" id="CalcularDeFormulas">calcular</button>
+                            <button type="reset" class="cancelarDeX cancelar" id="CancelarDeFormulas">cancelar</button>
+                        </div>
+                    </div>
+                    <div class="Poli">
+                        <!-- <input type="number" placeholder="Imagen de F(X)" id="funcDeXInput"> -->
+                        <output id="ImagenFdeX"> Imagen de F(X)</output>
+                    </div>
+                </div>
+                <div id="polinomio">
+                    <output class="poliResp" id="poliResp">Polinomio simplificado</output>
+                    </div>
+            </div>
+        </section>
+        <section class="raiz-container" aria-label="Sección de Raíces">
+            <div class="raiz">
+                <div class="Raiz-Head">
+                    <h2 id="Raiz-Head-H2">Aproximacion de raiz con puntos iniciales</h2>
+                </div>
+                <div class="Raiz-Body">
+                    <div class="raizInputs-container">
+                        <div class="InitA-container">
+                            <label style="font-size: 30px;" >A:<input maxlength="5" type="number" class="InitA inputsRaiz"></label>
+                        </div>
+                        <div class="InitB-container 1">
+                            <label style="font-size: 30px;">B:<input maxlength="5" type="number" class="InitB inputsRaiz"></label>
+                        </div>
+                    </div>
+                    <div class="raizResultante"><output>Raiz Resultante</output></div>
+                    <div class="raizButton">
+                        <button class="calcular BtnCalcRaiz" id="CalcularDeRaiz">CALCULAR</button>
+                        <button class="BtnCancRaiz cancelar" id="CancelarDeRaiz">CANCELAR</button>
+                    </div>
+                </div>
+            </div>
+            <div class="aprox">
+                <div class="Dgrid-Head"><H2 id="Dgrid-Head-H2">Aproximacion de raiz</H2></div>
+                <div class="DGrid"></div>
+            </div>
+        </section>
+        
+        <footer class="footer"></footer>
+    </div>
+<script type="module" src="/Public/JS/Settings/inputConfig.js"></script>
+<script type="module" src="/Public/JS/Settings/Formulas.js"></script>
+<script type="module" src="/Public/JS/calculos.js"></script>
+
+</body>
+</html>

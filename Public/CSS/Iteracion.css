@@ -1,0 +1,99 @@
+:root{
+    --Nav : #0047ab;
+    --fuenteTitulo : ""Faculty Glyphic", sans-serif";
+    --Seccion : #B3C8CF;
+    --SubSeccion : aliceblue;
+}
+
+
+.ite-container{
+    display: flex;
+    width: 90vw;
+    height: 700px;
+    background-color: #B3C8CF;
+    padding: 10px;
+    display: flex;
+    gap: 42px;
+    margin-bottom: 45px;
+}
+    .tabla-container{
+        flex: 1;
+        background-color: var(--SubSeccion);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+        #iteracion-error {
+            transform: translateY(15px);
+        }
+        table {
+            width: 50%; /* Ajusta el ancho de la tabla */
+            margin: 20px auto; /* Centra la tabla */
+            border-collapse: collapse; /* Elimina espacios entre bordes */
+            /* border: 1px solid #ddd; Bordes generales */
+        }
+            th, td {
+                /* border: 1px solid #ddd; Bordes de las celdas */
+                padding: 10px; /* Espaciado interno */
+                text-align: center; /* Alineación del texto */
+            }
+            th {
+                background-color: var(--SubSeccion); /* Fondo para encabezados */
+                font-size: 30px;
+            }
+            .empty-col {
+                width: 30px; /* Define el ancho del espacio */
+                background-color: var(--SubSeccion); /* Fondo blanco para el espacio */
+                border: none; /* Sin bordes para separar visualmente */
+            }
+            .celdasInput{
+                text-align: center;    
+            }
+
+        .button-container{
+            flex-basis: 100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+            .cancelar,.calcular{
+                padding: 15px 50px;
+                border-radius: 10px;
+                border: none;
+                font-family: "Rubik", sans-serif;
+                font-weight: 600;
+                background-color: #89A8B2;
+                transition: all .3s;
+                
+
+            }
+            .calcular:hover{
+                scale: .95;
+                background-color: #384B70;
+                color: aliceblue;
+            }
+            .cancelar:hover{
+                scale: .95;
+                background-color: #AF1740;
+                color: var(--SubSeccion);
+            }
+            
+
+
+    .grafico-container{
+        flex: 2;
+        background-color: #89A8B2;
+        
+    }
+#dimesione{
+    text-align: center;
+}    
+#dimensione::-webkit-inner-spin-button,
+#dimensione::-webkit-outer-spin-button {
+    -webkit-appearance: spinner; /* Fuerza la apariencia del spinner */
+    display: inline-block; /* Asegura su visibilidad */
+}
+

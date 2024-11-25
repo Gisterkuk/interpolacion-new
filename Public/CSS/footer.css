@@ -1,0 +1,10 @@
+:root{
+    --azulOscuro : #0047ab;
+    --fuenteTitulo : ""Faculty Glyphic", sans-serif";
+}
+.footer{
+    bottom: 0px;
+    width: 100vw;
+    height: 120px;
+    background-color: var(--azulOscuro);
+}

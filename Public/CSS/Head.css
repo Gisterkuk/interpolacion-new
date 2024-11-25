@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap');
+:root{
+    --azulOscuro : #0047ab;
+    --fuenteTitulo : ""Faculty Glyphic", sans-serif";
+}
+.head-container{
+    background-color: var(--azulOscuro);
+    width: 100vw;
+    height: 100px;
+    margin-bottom: 45px;
+
+}
+.head-container > h1{ 
+    font-family: var(--fuenteTitulo);
+    font-weight: 500;
+    font-style: normal;
+    margin: 0px;
+    position: relative;
+    top: 30px;
+    left: 100px;
+    color: aliceblue;
+}
