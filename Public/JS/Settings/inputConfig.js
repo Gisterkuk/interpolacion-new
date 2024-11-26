@@ -1,6 +1,6 @@
 "use strict";
 
-import { construirPolinomio, diferenciasDivididasConstante, obtenerValores, simplificarConMathJS } from "../calculos.js";
+import { construirPolinomio, diferenciasDivididas, graficarPolinomioConPuntos, obtenerValores, simplificarConMathJS } from "../calculos.js";
 
 window.onload = () => {
     // Deshabilitar entrada manual en #dimensione
@@ -70,19 +70,31 @@ window.onload = () => {
     });
 
     const calcularDeiteracion = document.getElementById('CalcularDeIteracion');
-    let habilitadasX = document.getElementsByClassName('habilitadoX');
-    let habilitadasY = document.getElementsByClassName('habilitadoY');
     const mensajeDeError = document.getElementById('iteracion-error');
-
+    
     calcularDeiteracion.addEventListener('click', () => {
         console.log('iterando casillas...');
-
+        let habilitadasX = Array.from(document.getElementsByClassName('habilitadoX'))
+        let habilitadasY = Array.from(document.getElementsByClassName('habilitadoY'));
+        
         // Convierte `habilitadasX` y `habilitadasY` en arrays si no lo son
+        let incremento = habilitadasX[1].value - habilitadasX[0].value;
+        console.log(`incremento = ${incremento}`);
+        for (let i = 2; i < habilitadasY.length; i++) {
+            celdasX[i].value = (parseFloat(celdasX[i - 1].value) + incremento);
+        }
+        // habilitadasXArray.forEach(input => {
+            //     input.style.border = '';
+            //     console.log(`valores de X:` +input.value);
+            // });
+            // habilitadasYArray.forEach(input => {
+                //     input.style.border = '';
+                //     console.log(`valores de Y:` +input.value);
+                // });
+                
+                
         let habilitadasXArray = Array.from(habilitadasX);
         let habilitadasYArray = Array.from(habilitadasY);
-        habilitadasXArray.forEach(input => input.style.border = '');
-        habilitadasYArray.forEach(input => input.style.border = '');
-
         let valoresX = habilitadasXArray.map(input => parseFloat(input.value));
         let valoresY = habilitadasYArray.map(input => parseFloat(input.value));
         let ValoresVaciosX = [];
@@ -116,13 +128,16 @@ window.onload = () => {
             mensajeDeError.style.display = 'none';
             let ValoresX = obtenerValores(habilitadasXArray);
             let ValoresY = obtenerValores(habilitadasYArray);
-            let incremento = ValoresX[1] - ValoresX[0];
+            valoresY.forEach(elemt  => {
+                console.log(`valores de Y: ${elemt}`)
+            })
+            valoresX.forEach(elemt  => {
+                console.log(`valores de x: ${elemt}`)
+            })
 
-            for (let i = 2; i < ValoresY.length; i++) {
-                celdasX[i].value = (parseFloat(celdasX[i - 1].value) + incremento);
-            }
 
-            let Coeficientes = diferenciasDivididasConstante(ValoresY, incremento);
+
+            let Coeficientes = diferenciasDivididas(valoresX,ValoresY);
             Coeficientes.forEach(element => {
                 console.log('Coeficientes ' + element);
             });
@@ -136,6 +151,8 @@ window.onload = () => {
             PoliResp.style.color = '#000';
             PoliResp.textContent = simplificarConMathJS(Polinomios);
             formulaNewton.style.color = '#000';
+            
+            graficarPolinomioConPuntos(simplificarConMathJS(Polinomios),valoresX,valoresY,[0,10],document.getElementById('grafico'));
         }
     });
 };
