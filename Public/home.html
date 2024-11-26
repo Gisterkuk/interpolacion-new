@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.9.0/math.js"></script>
     
     <link rel="stylesheet" href="/Public/CSS/normalize.css">
     <link rel="stylesheet" href="/Public/CSS/ConfEstilos.css">
@@ -28,7 +30,7 @@
                     
                         <div class="dimensiones">
                             <label style="font-size: 20px;">Dimensiones:
-                                <input type="number" value="1" min="1" max="10" id="dimensione" style="width: 80px; text-align: center;">
+                                <input type="number" value="2" min="1" max="10" id="dimensione" style="width: 80px; text-align: center;">
                             </label>
                         </div>
                         <span class="error-message" id="iteracion-error">Completa las celdas correctamente</span>
@@ -43,14 +45,14 @@
                         </thead>
                         <tbody>
                                 <tr>
-                                    <td><input class="celdasInput X" id="CeldaX" type="number" placeholder="X1"></td>
+                                    <td><input class="celdasInput X habilitadoX" id="CeldaX" type="number" placeholder="X1"></td>
                                     <td class="empty-col"></td>
-                                    <td><input class="celdasInput Y" type="number" placeholder="Y1"></td>
+                                    <td><input class="celdasInput Y habilitadoY" type="number" placeholder="Y1"></td>
                                 </tr>
                                 <tr>
-                                    <td><input class="celdasInput X"  type="number" placeholder="X2"></td>
+                                    <td><input class="celdasInput X habilitadoX"  type="number" placeholder="X2"></td>
                                     <td class="empty-col"></td>
-                                    <td><input class="celdasInput Y" type="number" placeholder="Y2"></td>
+                                    <td><input class="celdasInput Y habilitadoY" type="number" placeholder="Y2"></td>
                                 </tr>
                                 <tr>
                                     <td><input class="celdasInput X" type="number" placeholder="X3"></td>
@@ -106,7 +108,7 @@
         </main>
         <section class="form-container" aria-label="Sección de Fórmulas">
             <div class="newton-container">
-                <output class="newtonRespuesta">Formula Newtoniana</output>
+                <output class="newtonRespuesta" id="newtonRespuesta">Formula Newtoniana</output>
             </div>
             <div class="polinomio-container">
                 <div id="funcX">

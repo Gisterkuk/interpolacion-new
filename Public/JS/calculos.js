@@ -1,6 +1,5 @@
 "use strict";
 
-// import { simplify } from 'mathjs';
 export function obtenerValores(celdas) {
     let Celdas = Array.from(celdas);
 
@@ -35,19 +34,22 @@ export function construirPolinomio(coeficientes, x0, h) {
         let termNewton = `${coeficientes[i]}`;
 
         for (let j = 0; j < i; j++) {
-            termNewton += ` * (x - ${x0 + j * h})`; // Multiplica cada término incremental
+            // Asegúrate de usar puntos en los valores decimales
+            const valor = (x0 + j * h).toString().replace(/,/g, '.');
+            termNewton += ` * (x - ${valor})`; // Multiplica cada término incremental
         }
 
         formulaNewton += ` + (${termNewton})`; // Agrega término a la fórmula de Newton
     }
 
-    // Retorna ambas representaciones del polinomio
-    return [formulaNewton];
+    return formulaNewton; // Devuelve el polinomio final con puntos
 }
+
 
 export function ResolverFuncionDeX(polinomio, x) {
     // Reemplaza todas las ocurrencias de "x" en la cadena con el valor ingresado
     const polinomioEvaluado = polinomio.replace(/x/g, `(${x})`);
+
     try {
         // Usa eval para calcular el valor del polinomio
         console.log(`F(${x}) = ` + polinomioEvaluado);

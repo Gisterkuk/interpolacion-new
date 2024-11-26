@@ -1,7 +1,7 @@
 "use strict";
 
 import { ResolverFuncionDeX } from "../calculos.js";
-import math from "mathjs";
+
 document.addEventListener('DOMContentLoaded', ()=>{
     const CalcularFDeX = document.getElementById('CalcularDeFormulas');
     const CancelarDeFDeX = document.getElementById('CancelarDeFormulas');

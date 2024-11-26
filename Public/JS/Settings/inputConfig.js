@@ -23,7 +23,7 @@ window.onload = () => {
         }
 
         // Activar/desactivar celdas en función del valor
-        for (let i = 0; i < celdasX.length; i++) {
+        for (let i = 2; i < celdasX.length; i++) {
             if (i < numCeldas) {
                 celdasY[i].disabled = false; // Habilita la celda
                 celdasY[i].style.backgroundColor = ''; // Restablece estilo
@@ -51,16 +51,21 @@ window.onload = () => {
 
     const cancelarDeIteracion = document.getElementById('CancelarDeIteracion');
     cancelarDeIteracion.addEventListener('click', () => {
-        dimensione.value = 1;
+        dimensione.value = 2;
         dimensione.dispatchEvent(new Event('input'));
-        celdasX[0].value = '';
-        celdasY[0].value = '';
 
         let habilitadasXArray = Array.from(document.getElementsByClassName('habilitadoX'));
         let habilitadasYArray = Array.from(document.getElementsByClassName('habilitadoY'));
 
-        habilitadasXArray.forEach(input => input.style.border = '');
-        habilitadasYArray.forEach(input => input.style.border = '');
+        habilitadasXArray.forEach(
+            input =>{
+                input.style.border = '';
+                input.value = ''
+            });
+        habilitadasYArray.forEach(input =>{
+                input.style.border = '';
+                input.value = ''
+            });
         mensajeDeError.style.display = 'none';
     });
 
@@ -85,7 +90,7 @@ window.onload = () => {
 
         // Encontrar los índices de los valores vacíos
         for (let i = 0; i < valoresX.length; i++) {
-            if (isNaN(valoresX[i])) {
+            if (isNaN(valoresX[i]) && i<2) {
                 ValoresVaciosX.push(i);
             }
             if (isNaN(valoresY[i])) {
@@ -121,15 +126,15 @@ window.onload = () => {
             Coeficientes.forEach(element => {
                 console.log('Coeficientes ' + element);
             });
-
-            let Polinomios = construirPolinomio(Coeficientes, ValoresX, incremento);
-            console.log('NEWTON: ' + Polinomios[0] + ' POLINOMIO SIMPLIFICADO ' + Polinomios[1]);
+            console.log(`coeficientes: ${Coeficientes} valoresDeX: ${valoresX[0]} incremento: ${incremento}`)
+            let Polinomios = construirPolinomio(Coeficientes, ValoresX[0], incremento);
+            console.log('NEWTON: ' + Polinomios);
 
             const formulaNewton = document.getElementById('newtonRespuesta');
             const PoliResp = document.getElementById('poliResp');
-            formulaNewton.textContent = Polinomios[0];
+            formulaNewton.textContent = Polinomios;
             PoliResp.style.color = '#000';
-            PoliResp.textContent = simplificarConMathJS(Polinomios[1]);
+            PoliResp.textContent = simplificarConMathJS(Polinomios);
             formulaNewton.style.color = '#000';
         }
     });
