@@ -47,10 +47,29 @@ document.addEventListener('DOMContentLoaded', ()=>{
         let B = document.getElementById('InitA').value;
         document.getElementById('grilla').style.display = 'none';
         document.getElementById('label-grilla').style.display = 'none'
+        try{
+            if((ImagenA*ImagenB) < 0){
+                posicionFalsa(document.getElementById('poliResp'),A,B);
+                    // Limpiar la tabla
+                tablaIteraciones.innerHTML = "";
 
-        if((ImagenA*ImagenB) < 0){
-            posicionFalsa(document.getElementById('poliResp'),)
-        }
+                // Llenar la tabla con los datos de las iteraciones
+                iteraciones.forEach(({ iteracion, a, b, c, fa, fb, fc }) => {
+                    const fila = document.createElement("tr");
+                    fila.innerHTML = `
+                        <td>${iteracion}</td>
+                        <td>${a.toFixed(6)}</td>
+                        <td>${b.toFixed(6)}</td>
+                        <td>${c.toFixed(6)}</td>
+                        <td>${fa.toFixed(6)}</td>
+                        <td>${fb.toFixed(6)}</td>
+                        <td>${fc.toFixed(6)}</td>
+                    `;
+                    tablaIteraciones.appendChild(fila);
+                });
+            }
+
+        }finally{}
     })
     
 })
