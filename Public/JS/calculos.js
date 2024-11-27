@@ -104,6 +104,55 @@ export function evaluarPolinomio(polinomio, x) {
     }
 }
 
+export function posicionFalsa(polinomio, a, b, tolerancia = 1e-5, maxIteraciones = 100) {
+    const iteraciones = []; // Para guardar las iteraciones
+    document.getElementById('raiz-error').style.display = 'none';
+    document.getElementById('raiz-error').textContent = 'No existe ninguna raiz entre esos puntos';
+    let iteracion = 0;
+    let raiz = null;
+
+    // Evaluar extremos iniciales
+    let fa = ResolverFuncionDeX(a);
+    let fb = ResolverFuncionDeX(b);
+    if (fa * fb > 0) {
+        document.getElementById('raiz-error').style.display = 'block';
+    }
+
+    while (iteracion < maxIteraciones) {
+        // Calcular el punto de intersección (c)
+        const c = b - (fb * (b - a)) / (fb - fa); // Fórmula de la posición falsa
+        const fc = ResolverFuncionDeX(c);
+
+        // Guardar los datos de la iteración
+        iteraciones.push({ iteracion: iteracion + 1, a, b, c, fa, fb, fc });
+
+        // Comprobar si la raíz es suficientemente precisa
+        if (Math.abs(fc) < tolerancia) {
+            raiz = c;
+            break;
+        }
+
+        // Actualizar extremos
+        if (fa * fc < 0) {
+            b = c;
+            fb = fc;
+        } else {
+            a = c;
+            fa = fc;
+        }
+
+        iteracion++;
+    }
+
+    if (raiz === null) {
+        document.getElementById('raiz-error').style.display = 'block';
+        document.getElementById('raiz-error').textContent = 'Limite de iteraciones alcanzado, no se encontraron raices';
+        
+    }
+
+    return { raiz, iteraciones };
+}
+
 // Función para graficar
 export function graficarPolinomioConPuntos(polinomio, valoresX, valoresY, rango, divId) {
     const xValoresPolinomio = [];

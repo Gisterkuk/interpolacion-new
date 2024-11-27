@@ -7,7 +7,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.9.0/math.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script>
 
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link rel="stylesheet" href="/Public/CSS/normalize.css">
     <link rel="stylesheet" href="/Public/CSS/ConfEstilos.css">
     <link rel="stylesheet" href="/Public/CSS/Head.css">
@@ -23,9 +24,10 @@
 <body>
     <div class="padre-container">
         <div class="head-container">
-            <h1>Calculadora de Interpolación</h1>
+            <h1><strong>Calculadora de Interpolación </strong> de incremento constante</h1>
         </div>
        
+        
         <main>
             <section class="ite-container" aria-label="Sección de Iteración">
                 <div class="tabla-container">
@@ -104,13 +106,18 @@
                     </div>
                 </div>
                 <div class="grafico-container" id="grafico">
-                    
+                    <label id="label-grafico" class="grafico-content">Esperando los datos para generar el grafico</label>
+                    <div class="loading-icon grafico-content"></div>
                 </div>
             </section>
         </main>
-        <section class="form-container" aria-label="Sección de Fórmulas">
+        <div class="scroll-down-indicator" style="display: none;">
+            <i class="fas fa-chevron-down"></i> <!-- Flecha hacia abajo -->
+        </div>
+        <section class="form-container" id="form-container" style="display: flex;" aria-label="Sección de Fórmulas">
             <div class="newton-container">
-                <output class="newtonRespuesta" id="newtonRespuesta">Formula Newtoniana</output>
+                <output class="newtonRespuesta" id="newtonRespuesta"></output>
+                <label class="label">Formula Newtoniana</label>
             </div>
             <div class="polinomio-container">
                 <div id="funcX">
@@ -121,34 +128,46 @@
                         </div>
                         <div class="buttonDeX-container">
                             <button type="submit" class="calcularDeX calcular" id="CalcularDeFormulas">calcular</button>
-                            <button type="reset" class="cancelarDeX cancelar" id="CancelarDeFormulas">cancelar</button>
+                        
                         </div>
                     </div>
                     <div class="Poli">
-                        <!-- <input type="number" placeholder="Imagen de F(X)" id="funcDeXInput"> -->
-                        <output id="ImagenFdeX"> Imagen de F(X)</output>
+                        <output id="ImagenFdeX"></output>
+                        <label class="label">Imagen de F(x)</label>
+
                     </div>
                 </div>
                 <div id="polinomio">
                     <output class="poliResp" id="poliResp">Polinomio simplificado</output>
-                    </div>
+                    <label class="label">Polinomio simplificado</label>
+                </div>
             </div>
         </section>
-        <section class="raiz-container" aria-label="Sección de Raíces">
+        <section class="raiz-container" id="raiz-container" style="display: flex;" aria-label="Sección de Raíces">
             <div class="raiz">
                 <div class="Raiz-Head">
                     <h2 id="Raiz-Head-H2">Aproximacion de raiz con puntos iniciales</h2>
+                    <span class="error-message" id="raiz-error" style="display: none;">No existe ninguna raiz entre esos puntos</span>
                 </div>
                 <div class="Raiz-Body">
                     <div class="raizInputs-container">
                         <div class="InitA-container">
-                            <label style="font-size: 30px;" >A:<input maxlength="5" type="number" class="InitA inputsRaiz"></label>
+                            <label for="InitA" style="font-size: 20px;" >X1:</label>
+                            <input maxlength="5" type="number" id="InitA" class="InitA inputsRaiz">
+                            <label for="InitB" style="font-size: 20px; margin: 0px 4px 0px 15px"> F(X2) = </label>
+                            <output id="ImagenA"></output>
                         </div>
                         <div class="InitB-container 1">
-                            <label style="font-size: 30px;">B:<input maxlength="5" type="number" class="InitB inputsRaiz"></label>
+                            <label for="InitB" style="font-size: 20px;">X2:</label>
+                            <input maxlength="5" type="number" class="InitB inputsRaiz" id="InitB">
+                            <label for="InitB" style="font-size: 20px; margin: 0px 4px 0px 15px"> F(X2) = </label>
+                            <output id="ImagenB"></output>
                         </div>
                     </div>
-                    <div class="raizResultante"><output>Raiz Resultante</output></div>
+                    <div class="raizResultante">
+                        <output></output>
+                        <label class="label" style="font-size: 18px;">Raiz Aproximada</label>
+                    </div>
                     <div class="raizButton">
                         <button class="calcular BtnCalcRaiz" id="CalcularDeRaiz">CALCULAR</button>
                         <button class="BtnCancRaiz cancelar" id="CancelarDeRaiz">CANCELAR</button>
@@ -156,8 +175,25 @@
                 </div>
             </div>
             <div class="aprox">
-                <div class="Dgrid-Head"><H2 id="Dgrid-Head-H2">Aproximacion de raiz</H2></div>
-                <div class="DGrid"></div>
+                <div class="DGrid">
+                    <!-- <label id="label-grilla" class="grafico-content">Esperando los puntos iniciales</label>
+                    <div class="loading-icon grafico-content" id="grilla"></div> -->
+                    <table id="tablaIteraciones" border="1">
+                        <thead>
+                            <tr>
+                                <th>Iteración</th>
+                                <th>a</th>
+                                <th>b</th>
+                                <th>c</th>
+                                <th>f(a)</th>
+                                <th>f(b)</th>
+                                <th>f(c)</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <label class="label" style="font-size: 23px;"><strong>Metodo: </strong>De la Posicion Falsa</label>
             </div>
         </section>
         

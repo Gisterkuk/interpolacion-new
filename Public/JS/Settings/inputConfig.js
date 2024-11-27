@@ -1,6 +1,7 @@
 "use strict";
 
 import { construirPolinomio, diferenciasDivididas, graficarPolinomioConPuntos, obtenerValores, simplificarConMathJS } from "../calculos.js";
+import { HabilitarSecciones } from "../Metodos.js";
 
 window.onload = () => {
     // Deshabilitar entrada manual en #dimensione
@@ -147,12 +148,18 @@ window.onload = () => {
 
             const formulaNewton = document.getElementById('newtonRespuesta');
             const PoliResp = document.getElementById('poliResp');
+            document.getElementById('ImagenFdeX').textContent = '';
+            document.getElementById('inputDeX').value = '';
             formulaNewton.textContent = Polinomios;
             PoliResp.style.color = '#000';
             PoliResp.textContent = simplificarConMathJS(Polinomios);
             formulaNewton.style.color = '#000';
-            
+            let graficoContent = Array.from(document.getElementsByClassName('grafico-content'));
+            document.getElementById('grafico').style.alignItems = 'initial';
+            document.getElementById('grafico').style.justifyContent = 'initial';
+            graficoContent.forEach(element => element.style.display = 'none');
             graficarPolinomioConPuntos(simplificarConMathJS(Polinomios),valoresX,valoresY,[0,10],document.getElementById('grafico'));
+            HabilitarSecciones();
         }
     });
 };

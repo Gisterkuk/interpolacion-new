@@ -14,7 +14,9 @@
     padding: 10px;
     display: flex;
     gap: 42px;
-    margin-bottom: 45px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    border-radius: 8px;
 }
     .tabla-container{
         flex: 1;
@@ -23,6 +25,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        border-radius: 8px;
     }
 
         #iteracion-error {
@@ -79,6 +82,7 @@
                 scale: .95;
                 background-color: #AF1740;
                 color: var(--SubSeccion);
+                border-radius: 8px;
             }
             
 
@@ -86,8 +90,41 @@
     .grafico-container{
         flex: 2;
         background-color: #89A8B2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        flex-direction: column;
         
     }
+    #label-grafico,#label-grilla {
+        top: 10px;
+        font-size: 30px;
+        color: var(--SubSeccion);
+        margin-bottom: 20px;
+    }
+    /* Estilo del ícono de carga */
+    .loading-icon {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3; /* Color del borde de fondo */
+        border-top: 5px solid #2196F3; /* Color del borde superior para la animación */
+        border-radius: 50%;
+        animation: spin 2.5s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+
 #dimesione{
     text-align: center;
 }    

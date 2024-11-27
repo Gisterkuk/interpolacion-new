@@ -20,3 +20,25 @@ body{
     display: none; /*Por defecto oculto */
   }
 
+.scroll-down-indicator {
+position: sticky;
+bottom: 30px;
+left: 0%;
+transform: translateX(-50%);
+color: #2196F3;
+font-size: 3rem;
+animation: bounce 1.5s infinite;
+cursor: pointer;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(10px);
+    }
+    60% {
+        transform: translateY(5px);
+    }
+}
