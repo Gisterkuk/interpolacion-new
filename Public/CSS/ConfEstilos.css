@@ -42,3 +42,30 @@ cursor: pointer;
         transform: translateY(5px);
     }
 }
+/* Personalizar el contenedor del scrollbar */
+::-webkit-scrollbar {
+    width: 12px; /* Ancho del scrollbar vertical */
+}
+
+/* Estilo de la pista (track) del scrollbar */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estilo del pulgar (thumb) del scrollbar */
+::-webkit-scrollbar-thumb {
+    background: #888; /* Color del pulgar */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Cambiar el color del pulgar al pasar el mouse */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color más oscuro al pasar el mouse */
+}
+
+/* Personalizar solo el scroll vertical */
+body {
+    scrollbar-color: #888 #f1f1f1; /* Estilo para Firefox */
+    scrollbar-width: thin; /* Grosor del scrollbar en Firefox */
+}

@@ -70,11 +70,11 @@ export function construirPolinomio(coeficientes, x0, h) {
 
 
 
-export function ResolverFuncionDeX(polinomio, x) {
+export function ResolverFuncionDeX(x) {
     try {
         // Reemplaza "x" en el polinomio por el valor ingresado
         const scope = { x: x };
-        const resultado = math.evaluate(polinomio, scope);
+        const resultado = math.evaluate(document.getElementById('poliResp').textContent, scope);
         console.log(`F(${x}) = ${resultado}`);
         return resultado;
     } catch (error) {
@@ -114,6 +114,7 @@ export function posicionFalsa(polinomio, a, b, tolerancia = 1e-5, maxIteraciones
     // Evaluar extremos iniciales
     let fa = ResolverFuncionDeX(a);
     let fb = ResolverFuncionDeX(b);
+    console.log(`valor de F(x1) = ${fa}\n valor de F(x2) = ${fb}`)
     if (fa * fb > 0) {
         document.getElementById('raiz-error').style.display = 'block';
     }
@@ -121,6 +122,7 @@ export function posicionFalsa(polinomio, a, b, tolerancia = 1e-5, maxIteraciones
     while (iteracion < maxIteraciones) {
         // Calcular el punto de intersección (c)
         const c = b - (fb * (b - a)) / (fb - fa); // Fórmula de la posición falsa
+        console.log(`el valor de C es ${c}`);
         const fc = ResolverFuncionDeX(c);
 
         // Guardar los datos de la iteración
@@ -129,6 +131,7 @@ export function posicionFalsa(polinomio, a, b, tolerancia = 1e-5, maxIteraciones
         // Comprobar si la raíz es suficientemente precisa
         if (Math.abs(fc) < tolerancia) {
             raiz = c;
+            console.log(`raiz encontrada ${raiz}`);
             break;
         }
 
@@ -145,9 +148,11 @@ export function posicionFalsa(polinomio, a, b, tolerancia = 1e-5, maxIteraciones
     }
 
     if (raiz === null) {
-        document.getElementById('raiz-error').style.display = 'block';
-        document.getElementById('raiz-error').textContent = 'Limite de iteraciones alcanzado, no se encontraron raices';
+        // document.getElementById('raiz-error').style.display = 'block';
+        document.getElementById('raizOutput').textContent = 'Limite de iteraciones alcanzado, no se encontraron raices';
         
+    }else{
+        document.getElementById('raizOutput').textContent =`Raiz mas cercana encontrada ${raiz}`
     }
 
     return { raiz, iteraciones };

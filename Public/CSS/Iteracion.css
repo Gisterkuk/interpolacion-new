@@ -32,7 +32,7 @@
             transform: translateY(15px);
         }
         table {
-            width: 50%; /* Ajusta el ancho de la tabla */
+            width: 100%; /* Ajusta el ancho de la tabla */
             margin: 20px auto; /* Centra la tabla */
             border-collapse: collapse; /* Elimina espacios entre bordes */
             /* border: 1px solid #ddd; Bordes generales */

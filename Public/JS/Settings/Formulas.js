@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const Xinput = document.getElementById('inputDeX');
     const PoliRespOutput = document.getElementById('poliResp');
     const FdeXContainer = document.getElementById('ImagenFdeX');
+    const tablaIteraciones = document.getElementById("tabla-raiz").querySelector("tbody");
 
     CalcularFDeX.addEventListener('click',()=>{
         let habilitadasX = Array.from(document.getElementsByClassName('habilitadoX'))
@@ -18,14 +19,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
         let X = Xinput.value;
         // console.log(`escuchando \n polinomio: ${PoliResp} \n X = ${X}`);
 
-        FdeXContainer.textContent = ResolverFuncionDeX(PoliResp,X);
+        FdeXContainer.textContent = ResolverFuncionDeX(X);
         
     });
     const InitA = document.getElementById('InitA');
     InitA.addEventListener('input',()=>{
         let PoliResp = PoliRespOutput.textContent; 
         if(InitA){
-            document.getElementById('ImagenA').textContent = ResolverFuncionDeX(PoliResp,InitA.value);
+            document.getElementById('ImagenA').textContent = ResolverFuncionDeX(InitA.value);
         }else{
             document.getElementById('ImagenA').textContent = '';
         }
@@ -34,42 +35,71 @@ document.addEventListener('DOMContentLoaded', ()=>{
     InitB.addEventListener('input',()=>{
         let PoliResp = PoliRespOutput.textContent; 
         if(InitB){
-            document.getElementById('ImagenB').textContent = ResolverFuncionDeX(PoliResp,InitB.value);
+            document.getElementById('ImagenB').textContent = ResolverFuncionDeX(InitB.value);
         }
     })
 
     const CalcularDeRaiz = document.getElementById('CalcularDeRaiz');
-    const CancelarDeRaiz = document.getElementById('CancelarDeRaiz');
-    CalcularDeRaiz.addEventListener('click',()=>{
-        let ImagenA = parseInt(document.getElementById('ImagenA').value);
-        let ImagenB = parseInt(document.getElementById('ImagenB').value);
-        let A = document.getElementById('InitA').value;
-        let B = document.getElementById('InitA').value;
+    CalcularDeRaiz.addEventListener('click', () => {
+        // Obtener valores iniciales
+        const ImagenA = parseFloat(document.getElementById('ImagenA').value);
+        const ImagenB = parseFloat(document.getElementById('ImagenB').value);
+        const A = parseFloat(document.getElementById('InitA').value);
+        const B = parseFloat(document.getElementById('InitB').value);
+    
+        const polinomio = document.getElementById('poliResp').textContent; // Polinomio simplificado
+        const tablaIteraciones = document.getElementById("tabla-raiz").querySelector("tbody");
+    
+        // Ocultar elementos no relacionados con el cálculo de la raíz
         document.getElementById('grilla').style.display = 'none';
-        document.getElementById('label-grilla').style.display = 'none'
-        try{
-            if((ImagenA*ImagenB) < 0){
-                posicionFalsa(document.getElementById('poliResp'),A,B);
-                    // Limpiar la tabla
+        document.getElementById('label-grilla').style.display = 'none';
+    
+        try {
+            // Verificar si el intervalo tiene una raíz
+            if (ImagenA * ImagenB < 0) {
+                console.log(`Polinomio: ${polinomio}\nIntervalo inicial: [${A}, ${B}]`);
+    
+                // Llamar a la función de posición falsa
+                const { raiz, iteraciones } = posicionFalsa(polinomio, A, B);
+    
+                // Mostrar la raíz encontrada
+                document.getElementById('raizOutput').textContent = raiz
+                document.getElementById('DGrid').style.justifyContent = 'flex-start';
+                document.getElementById('tabla-raiz').style.display = 'block';
+    
+                // Ocultar elementos innecesarios
+                Array.from(document.getElementsByClassName('raiz-content')).forEach(element => {
+                    element.style.display = 'none';
+                });
+    
+                // Limpiar la tabla de iteraciones
                 tablaIteraciones.innerHTML = "";
-
-                // Llenar la tabla con los datos de las iteraciones
+    
+                // Llenar la tabla con las iteraciones
                 iteraciones.forEach(({ iteracion, a, b, c, fa, fb, fc }) => {
                     const fila = document.createElement("tr");
                     fila.innerHTML = `
-                        <td>${iteracion}</td>
-                        <td>${a.toFixed(6)}</td>
-                        <td>${b.toFixed(6)}</td>
-                        <td>${c.toFixed(6)}</td>
-                        <td>${fa.toFixed(6)}</td>
-                        <td>${fb.toFixed(6)}</td>
-                        <td>${fc.toFixed(6)}</td>
+                        <td class="filas-raiz">${iteracion}</td>
+                        <td class="filas-raiz">${a.toFixed(1)}</td>
+                        <td class="filas-raiz">${b.toFixed(1)}</td>
+                        <td class="filas-raiz">${c.toFixed(5)}</td>
+                        <td class="filas-raiz">${fa.toFixed(3)}</td>
+                        <td class="filas-raiz">${fb.toFixed(3)}</td>
+                        <td class="filas-raiz">${fc.toFixed(5)}</td>
                     `;
                     tablaIteraciones.appendChild(fila);
                 });
+            } else {
+                // Si no hay raíces en el intervalo
+                document.getElementById('raizOutput').textContent =
+                    "No se encontró una raíz en el intervalo proporcionado. Verifica tus valores.";
             }
-
-        }finally{}
-    })
+        } catch (error) {
+            console.error("Error durante el cálculo:", error.message);
+            document.getElementById('raizOutput').textContent =
+                "Ocurrió un error durante el cálculo. Por favor verifica los valores y el polinomio.";
+        }
+    });
+    
     
 })

@@ -120,7 +120,7 @@
         border-radius: 8px;
     }
         .DGrid{
-
+            overflow: auto;
             background-color: #89A8B2;
             flex: 1;
             border-radius: 0px 0px 8px 8px;
@@ -141,4 +141,19 @@
 
 #raiz-error{
     font-size: 23px;
+}
+#tabla-raiz{
+    margin: 0px;
+}
+.columnas-raiz{
+    background-color: var(--SubSeccion);
+    font-size: 20px;
+    width: 1%;
+}
+.filas-raiz{
+    background-color: var(--SubSeccion);
+}
+.falsaposicion{
+    left: 5px;
+    top: 374px;
 }

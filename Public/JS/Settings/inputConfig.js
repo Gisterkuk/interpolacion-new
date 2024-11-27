@@ -84,16 +84,7 @@ window.onload = () => {
         for (let i = 2; i < habilitadasY.length; i++) {
             celdasX[i].value = (parseFloat(celdasX[i - 1].value) + incremento);
         }
-        // habilitadasXArray.forEach(input => {
-            //     input.style.border = '';
-            //     console.log(`valores de X:` +input.value);
-            // });
-            // habilitadasYArray.forEach(input => {
-                //     input.style.border = '';
-                //     console.log(`valores de Y:` +input.value);
-                // });
-                
-                
+
         let habilitadasXArray = Array.from(habilitadasX);
         let habilitadasYArray = Array.from(habilitadasY);
         let valoresX = habilitadasXArray.map(input => parseFloat(input.value));

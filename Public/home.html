@@ -26,8 +26,7 @@
         <div class="head-container">
             <h1><strong>Calculadora de Interpolación </strong> de incremento constante</h1>
         </div>
-       
-        
+
         <main>
             <section class="ite-container" aria-label="Sección de Iteración">
                 <div class="tabla-container">
@@ -165,7 +164,7 @@
                         </div>
                     </div>
                     <div class="raizResultante">
-                        <output></output>
+                        <output id="raizOutput"></output>
                         <label class="label" style="font-size: 18px;">Raiz Aproximada</label>
                     </div>
                     <div class="raizButton">
@@ -175,25 +174,25 @@
                 </div>
             </div>
             <div class="aprox">
-                <div class="DGrid">
-                    <!-- <label id="label-grilla" class="grafico-content">Esperando los puntos iniciales</label>
-                    <div class="loading-icon grafico-content" id="grilla"></div> -->
-                    <table id="tablaIteraciones" border="1">
+                <div class="DGrid" id="DGrid">
+                    <label id="label-grilla" class="raiz-content">Esperando los puntos iniciales</label>
+                    <div class="loading-icon raiz-content" id="grilla"></div>
+                    <table id="tabla-raiz" border="1" style="display: none;">
                         <thead>
                             <tr>
-                                <th>Iteración</th>
-                                <th>a</th>
-                                <th>b</th>
-                                <th>c</th>
-                                <th>f(a)</th>
-                                <th>f(b)</th>
-                                <th>f(c)</th>
+                                <th class="columnas-raiz">Ite</th>
+                                <th class="columnas-raiz">a</th>
+                                <th class="columnas-raiz">b</th>
+                                <th class="columnas-raiz">xi</th>
+                                <th class="columnas-raiz">f(a)</th>
+                                <th class="columnas-raiz">f(b)</th>
+                                <th class="columnas-raiz">f(xi)</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
                 </div>
-                <label class="label" style="font-size: 23px;"><strong>Metodo: </strong>De la Posicion Falsa</label>
+                <label class="label falsaposicion" style="font-size: 23px;"><strong>Metodo: </strong>De la Posicion Falsa</label>
             </div>
         </section>
         
