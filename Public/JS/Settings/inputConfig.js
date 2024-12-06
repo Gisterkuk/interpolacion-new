@@ -148,12 +148,16 @@ window.onload = () => {
             document.getElementById('inputDeX').value = '';
             formulaNewton.textContent = Polinomios;
             PoliResp.style.color = '#000';
+
             PoliResp.textContent = getExpandedPolynomial(valoresX,valoresY);
             formulaNewton.style.color = '#000';
+
             let graficoContent = Array.from(document.getElementsByClassName('grafico-content'));
+            
             document.getElementById('grafico').style.alignItems = 'initial';
             document.getElementById('grafico').style.justifyContent = 'initial';
             graficoContent.forEach(element => element.style.display = 'none');
+            
             graficarPolinomioConPuntos(PoliResp.textContent,valoresX,valoresY,[0,10],document.getElementById('grafico'));
             HabilitarSecciones();
         }
