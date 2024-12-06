@@ -79,7 +79,11 @@ window.onload = () => {
         console.log('iterando casillas...');
         let habilitadasX = Array.from(document.getElementsByClassName('habilitadoX'))
         let habilitadasY = Array.from(document.getElementsByClassName('habilitadoY'));
-        
+        if(habilitadasX[0].value === habilitadasX[1].value ){
+            document.getElementById('iteracion-error').style.display = 'flex';
+            document.getElementById('iteracion-error').textContent = 'Los valores de X no pueden repetirse.'
+            return
+        }
         // Convierte `habilitadasX` y `habilitadasY` en arrays si no lo son
         let incremento = habilitadasX[1].value - habilitadasX[0].value;
         console.log(`incremento = ${incremento}`);
