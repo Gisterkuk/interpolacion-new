@@ -127,3 +127,49 @@ export function simplificarYOrdenarPolinomio(polinomio) {
         return null;
     }
 }
+export function getExpandedPolynomial(xValues, yValues) {
+    const n = xValues.length;
+    const coefficients = new Array(n).fill(0);
+
+    // Construir el polinomio de Lagrange expandido
+    for (let i = 0; i < n; i++) {
+        let termCoefficient = yValues[i];
+
+        // Calcular el denominador (x_i - x_j) para j != i
+        for (let j = 0; j < n; j++) {
+            if (j !== i) {
+                termCoefficient /= (xValues[i] - xValues[j]);
+            }
+        }
+
+        // Crear un arreglo temporal para acumular el término de Lagrange expandido
+        const term = new Array(n).fill(0);
+        term[0] = termCoefficient;
+
+        // Expandir (x - x_j) para cada j != i
+        for (let j = 0; j < n; j++) {
+            if (j !== i) {
+                for (let k = n - 1; k > 0; k--) {
+                    term[k] = term[k] * -xValues[j] + (term[k - 1] || 0);
+                }
+                term[0] = term[0] * -xValues[j];
+            }
+        }
+
+        // Sumar el término calculado a los coeficientes finales del polinomio
+        for (let k = 0; k < n; k++) {
+            coefficients[k] += term[k];
+        }
+    }
+
+    // Convertir los coeficientes a una representación de polinomio
+    let polynomial = '';
+    for (let i = coefficients.length - 1; i >= 0; i--) {
+        if (coefficients[i] !== 0) {
+            polynomial += `${coefficients[i] > 0 && i !== coefficients.length - 1 ? '+' : ''}${coefficients[i]}`;
+            if (i > 0) polynomial += `x${i > 1 ? '^' + i : ''}`;
+        }
+    }
+
+    return polynomial;
+}

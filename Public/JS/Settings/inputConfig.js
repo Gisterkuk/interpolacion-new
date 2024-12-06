@@ -1,7 +1,7 @@
 "use strict";
 
 import { construirPolinomio, diferenciasDivididas, graficarPolinomioConPuntos, obtenerValores, simplificarConMathJS } from "../calculos.js";
-import { calcularLagrange, construirPolinomioLagrange, simplificarYOrdenarPolinomio } from "../lagrange.js";
+import { calcularLagrange, construirPolinomioLagrange, getExpandedPolynomial, simplificarYOrdenarPolinomio } from "../lagrange.js";
 import { HabilitarSecciones } from "../Metodos.js";
 
 
@@ -144,7 +144,7 @@ window.onload = () => {
             document.getElementById('inputDeX').value = '';
             formulaNewton.textContent = Polinomios;
             PoliResp.style.color = '#000';
-            PoliResp.textContent = simplificarYOrdenarPolinomio(Polinomios);
+            PoliResp.textContent = getExpandedPolynomial(valoresX,valoresY);
             formulaNewton.style.color = '#000';
             let graficoContent = Array.from(document.getElementsByClassName('grafico-content'));
             document.getElementById('grafico').style.alignItems = 'initial';
