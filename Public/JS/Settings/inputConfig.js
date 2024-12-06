@@ -1,7 +1,9 @@
 "use strict";
 
 import { construirPolinomio, diferenciasDivididas, graficarPolinomioConPuntos, obtenerValores, simplificarConMathJS } from "../calculos.js";
+import { calcularLagrange, construirPolinomioLagrange, simplificarYOrdenarPolinomio } from "../lagrange.js";
 import { HabilitarSecciones } from "../Metodos.js";
+
 
 window.onload = () => {
     // Deshabilitar entrada manual en #dimensione
@@ -129,13 +131,12 @@ window.onload = () => {
 
 
 
-            let Coeficientes = diferenciasDivididas(valoresX,ValoresY);
-            Coeficientes.forEach(element => {
-                console.log('Coeficientes ' + element);
-            });
-            console.log(`coeficientes: ${Coeficientes} valoresDeX: ${valoresX[0]} incremento: ${incremento}`)
-            let Polinomios = construirPolinomio(Coeficientes, ValoresX[0], incremento);
-            console.log('NEWTON: ' + Polinomios);
+            const coeficientesLagrange = calcularLagrange(valoresX, valoresY);
+            console.log("Coeficientes de Lagrange:", coeficientesLagrange);
+
+            // console.log(`coeficientes: ${Coeficientes} valoresDeX: ${valoresX[0]} incremento: ${incremento}`)
+            let Polinomios = construirPolinomioLagrange(valoresX,valoresY);
+            console.log('lagrange: ' + Polinomios);
 
             const formulaNewton = document.getElementById('newtonRespuesta');
             const PoliResp = document.getElementById('poliResp');
@@ -143,7 +144,7 @@ window.onload = () => {
             document.getElementById('inputDeX').value = '';
             formulaNewton.textContent = Polinomios;
             PoliResp.style.color = '#000';
-            PoliResp.textContent = simplificarConMathJS(Polinomios);
+            PoliResp.textContent = simplificarYOrdenarPolinomio(Polinomios);
             formulaNewton.style.color = '#000';
             let graficoContent = Array.from(document.getElementsByClassName('grafico-content'));
             document.getElementById('grafico').style.alignItems = 'initial';

@@ -43,11 +43,6 @@ export function diferenciasDivididas(valoresX, valoresY) {
 }
 
 
-
-
-
-
-
 export function construirPolinomio(coeficientes, x0, h) {
     let formulaNewton = `${coeficientes[0]}`; // Primer término
 
