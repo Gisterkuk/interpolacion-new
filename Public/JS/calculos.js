@@ -12,59 +12,6 @@ export function obtenerValores(celdas) {
     return celdasHabilitadas.map(celda => parseFloat(celda.value));
 }
 
-
-export function diferenciasDivididas(valoresX, valoresY) {
-    if (valoresX.length !== valoresY.length) {
-        throw new Error("Los arreglos de X e Y deben tener la misma longitud.");
-    }
-
-    const n = valoresY.length;
-    const diferencias = [Array.from(valoresY)]; // Nivel 0: valores iniciales de Y
-
-    // Iterar sobre los niveles de diferencias
-    for (let nivel = 1; nivel < n; nivel++) {
-        const fila = [];
-        for (let i = 0; i < n - nivel; i++) {
-            const numerador = diferencias[nivel - 1][i + 1] - diferencias[nivel - 1][i];
-            const denominador = valoresX[i + nivel] - valoresX[i]; // Usar valores de X
-            const resultado = numerador / denominador; // Diferencias divididas
-            fila.push(resultado);
-        }
-        diferencias.push(fila); // Añadir la fila actual a la matriz de diferencias
-    }
-
-    // Depuración: Imprimir cada nivel de diferencias
-    diferencias.forEach((fila, nivel) => {
-        console.log(`Nivel ${nivel}:`, fila);
-    });
-
-    // Retornar los primeros valores de cada nivel como los coeficientes
-    return diferencias.map(fila => fila[0]);
-}
-
-
-export function construirPolinomio(coeficientes, x0, h) {
-    let formulaNewton = `${coeficientes[0]}`; // Primer término
-
-    for (let i = 1; i < coeficientes.length; i++) {
-        if (coeficientes[i] !== 0) { // Ignorar términos con coeficientes cero
-            let termNewton = `${coeficientes[i]}`;
-
-            for (let j = 0; j < i; j++) {
-                const valor = (x0 + j * h); // Mantén precisión adecuada
-                termNewton += ` * (x - ${valor})`;
-            }
-
-            formulaNewton += ` + (${termNewton})`; // Agrega el término válido
-        }
-    }
-
-    return formulaNewton; // Devuelve el polinomio final
-}
-
-
-
-
 export function ResolverFuncionDeX(x) {
     try {
         // Reemplaza "x" en el polinomio por el valor ingresado
@@ -78,15 +25,6 @@ export function ResolverFuncionDeX(x) {
     }
 }
 
-export function simplificarConMathJS(polinomio) {
-    try {
-        const resultado = math.simplify(polinomio);
-        return resultado.toString();
-    } catch (error) {
-        console.error("Error al simplificar con Math.js:", error);
-        return null;
-    }
-}
 
 // Función para evaluar el polinomio
 export function evaluarPolinomio(polinomio, x) {

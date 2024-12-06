@@ -1,7 +1,7 @@
 "use strict";
 
-import { construirPolinomio, diferenciasDivididas, graficarPolinomioConPuntos, obtenerValores, simplificarConMathJS } from "../calculos.js";
-import { calcularLagrange, construirPolinomioLagrange, getExpandedPolynomial, simplificarYOrdenarPolinomio } from "../lagrange.js";
+import {graficarPolinomioConPuntos, obtenerValores } from "../calculos.js";
+import { calcularLagrange, construirPolinomioLagrange, getExpandedPolynomial} from "../lagrange.js";
 import { HabilitarSecciones } from "../Metodos.js";
 
 
@@ -154,7 +154,7 @@ window.onload = () => {
             document.getElementById('grafico').style.alignItems = 'initial';
             document.getElementById('grafico').style.justifyContent = 'initial';
             graficoContent.forEach(element => element.style.display = 'none');
-            graficarPolinomioConPuntos(simplificarConMathJS(Polinomios),valoresX,valoresY,[0,10],document.getElementById('grafico'));
+            graficarPolinomioConPuntos(PoliResp.textContent,valoresX,valoresY,[0,10],document.getElementById('grafico'));
             HabilitarSecciones();
         }
     });

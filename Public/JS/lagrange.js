@@ -162,14 +162,18 @@ export function getExpandedPolynomial(xValues, yValues) {
         }
     }
 
+    // Redondear los coeficientes a 4 decimales
+    const roundedCoefficients = coefficients.map(coef => parseFloat(coef.toFixed(3)));
+
     // Convertir los coeficientes a una representación de polinomio
     let polynomial = '';
-    for (let i = coefficients.length - 1; i >= 0; i--) {
-        if (coefficients[i] !== 0) {
-            polynomial += `${coefficients[i] > 0 && i !== coefficients.length - 1 ? '+' : ''}${coefficients[i]}`;
+    for (let i = roundedCoefficients.length - 1; i >= 0; i--) {
+        if (roundedCoefficients[i] !== 0) {
+            polynomial += `${roundedCoefficients[i] > 0 && i !== roundedCoefficients.length - 1 ? '+' : ''}${roundedCoefficients[i]}`;
             if (i > 0) polynomial += `x${i > 1 ? '^' + i : ''}`;
         }
     }
 
     return polynomial;
 }
+
